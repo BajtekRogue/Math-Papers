@@ -6,3 +6,8 @@ Welcome to my collection of math notes and papers.
 A short paper proving that \( \mathbb{Z}[\frac{1+\sqrt{-19}}{2}] \) is a PID but not an ED.
 
 👉 [Read the paper (PDF)](PID_not_ED.pdf)
+
+## Matrix rows swapping counting problem
+A short problem on the number of equivalent matrices under row permutations.
+
+👉 [Read the paper (PDF)](EquivalentMatricies.pdf)
