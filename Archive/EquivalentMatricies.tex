@@ -1,0 +1,132 @@
+\documentclass[a4paper,12pt]{report}
+\errorcontextlines=999
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{fact}{Fact}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Mat}{Mat}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+
+\crefname{fact}{fact}{facts}
+\Crefname{fact}{Fact}{Facts}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+\title{Counting Equivalence Classes of Matrices under Row Permutations}
+\author{Bajtek Rogue}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Problem}
+
+Let $n,m\in\mathbb{N}_+$, and let $\Mat_{n\times n}(\mathbb{Z}_m)$ denote the set of all $n \times n$ matrices with entries in $\mathbb{Z}_m=\{0,1,\dots, m-1\}$. Given $\mathbf{A},\mathbf{B}\in \Mat_{n\times n}(\mathbb{Z}_m)$, we say that they are \textbf{equivalent} if we can obtain $\mathbf{B}$ by permuting the rows of $\mathbf{A}$. We wish to find the number of equivalence classes of matrices under this relation.
+
+\section*{Solution}
+
+Let $\mathrm{S}_n$ denote the symmetric group on $n$ elements. For $\sigma\in \mathrm{S}_n$, we define its \textbf{permutation matrix} $\mathbf{P}_\sigma$ as follows:
+\[
+    [\mathbf{P}_\sigma]_{i,j} =
+    \begin{cases}
+    1 & \text{if } i = \sigma(j), \\
+    0 & \text{otherwise}.
+    \end{cases}
+\]
+Then we have $\mathbf{A}\sim\mathbf{B}$ if and only if $\mathbf{P}_\sigma\mathbf{A}=\mathbf{B}$ for some $\sigma \in \mathrm{S}_n$. 
+
+Next, let us define a group action $\theta:\mathrm{S}_n\times \Mat_{n\times n}(\mathbb{Z}_m)\to \Mat_{n\times n}(\mathbb{Z}_m)$ by $\theta(\sigma, \mathbf{A})=\mathbf{P}_\sigma\mathbf{A}$. 
+
+\subsection*{Verification of Group Action}
+
+Let us verify that this is indeed a group action. Take any $\mathbf{A}\in \Mat_{n\times n}(\mathbb{Z}_m)$.
+
+\medskip
+\noindent\textbf{Identity:} If $\mathrm{id}$ is the identity permutation, then $\mathbf{P}_{\mathrm{id}}=\mathcal{I}_n$, where $\mathcal{I}_n$ is the $n\times n$ identity matrix. Thus 
+\[
+\theta(\mathrm{id}, \mathbf{A})=\mathbf{P}_{\mathrm{id}}\mathbf{A}=\mathcal{I}_n\mathbf{A}=\mathbf{A}.
+\]
+
+\medskip
+\noindent\textbf{Compatibility:} To verify compatibility with the group operation, take $\sigma, \tau\in \mathrm{S}_n$. Notice that 
+\[
+    [\mathbf{P}_\sigma\mathbf{P}_\tau]_{i,j}
+     =\sum_{k=1}^n [\mathbf{P}_\sigma]_{i,k} [\mathbf{P}_\tau]_{k,j}=\sum_{k=1}^n \mathbf{1}_{i=\sigma(k)} \mathbf{1}_{k=\tau(j)} 
+     = \mathbf{1}_{i=\sigma(\tau(j))} =[\mathbf{P}_{\sigma\circ\tau}]_{i,j}.
+\]
+We then have 
+\[
+    \theta(\sigma,\theta(\tau, \mathbf{A}))=\theta(\sigma, \mathbf{P}_{\tau}\mathbf{A})=\mathbf{P}_{\sigma}\mathbf{P}_{\tau}\mathbf{A}=\mathbf{P}_{\sigma\circ\tau}\mathbf{A}=\theta(\sigma\circ\tau, \mathbf{A}).
+\]
+Therefore, $\theta$ is a group action. 
+
+\subsection*{Orbits and Fixed Points}
+
+Recall that the \textbf{orbit} of $\mathbf{A}$ under the action of $\mathrm{S}_n$ is 
+\[
+\Orb_{\mathrm{S}_n}(\mathbf{A})=\{\mathbf{B}\in\Mat_{n\times n}(\mathbb{Z}_m):\exists \sigma\in \mathrm{S}_n \quad \mathbf{B}=\theta(\sigma,\mathbf{A})\},
+\]
+the set of \textbf{fixed points} of $\sigma$ is 
+\[
+\Fix_{\mathrm{S}_n}(\sigma)=\{\mathbf{A}\in \Mat_{n\times n}(\mathbb{Z}_m):\theta(\sigma, \mathbf{A})=\mathbf{A}\},
+\]
+and the \textbf{set of orbits} is 
+\[
+\Mat_{n\times n}(\mathbb{Z}_m)/\mathrm{S}_n=\{\Orb_{\mathrm{S}_n}(\mathbf{A}):\mathbf{A}\in\Mat_{n\times n}(\mathbb{Z}_m)\}.
+\]
+
+Now $\mathbf{A}\sim\mathbf{B}$ if and only if $\mathbf{B}\in\Orb_{\mathrm{S}_n}(\mathbf{A})$. Thus we wish to find the number of orbits of $\theta$.
+
+\subsection*{Application of Burnside's Lemma}
+
+By Burnside's lemma, we have
+\[
+\left|\Mat_{n\times n}(\mathbb{Z}_m)/\mathrm{S}_n\right|=\frac{1}{|\mathrm{S}_n|}\sum_{\sigma\in \mathrm{S}_n} \left|\Fix_{\mathrm{S}_n}(\sigma)\right|.
+\]
+
+Let us compute $|\Fix_{\mathrm{S}_n}(\sigma)|$. Suppose $\sigma$ has $k$ disjoint cycles in its cycle decomposition. For $\mathbf{A}$ to be fixed by $\sigma$, each row belonging to the same cycle must be identical. Since there are $m^n$ ways to choose each row of a matrix $\mathbf{A}$, and we have $k$ independent cycles, we have 
+\[
+\left|\Fix_{\mathrm{S}_n}(\sigma)\right|=(m^n)^k.
+\]
+
+Recall that there are exactly $\displaystyle\left[{n \atop k}\right]$ permutations in $\mathrm{S}_n$ having $k$ disjoint cycles, where $\displaystyle\left[{n \atop k}\right]$ is the (unsigned) Stirling number of the first kind. Let us write $x^{\overline{n}}=x(x+1)\cdots(x+n-1)$ for the rising factorial. Recall the identity 
+\[
+\sum_{k=0}^{n} \left[{n \atop k}\right] x^k=x^{\overline{n}}.
+\]
+
+Finally, we have
+\[
+    \frac{1}{|\mathrm{S}_n|}\sum_{\sigma\in \mathrm{S}_n} \left|\Fix_{\mathrm{S}_n}(\sigma)\right| =\frac{1}{n!}\sum_{k=0}^n \left[{n \atop k}\right] (m^n)^k =\frac{1}{n!}(m^n)^{\overline{n}}.
+\]
+
+Hence the number of equivalence classes of matrices under row permutations is 
+\[
+\boxed{\frac{1}{n!}(m^n)^{\overline{n}}}.
+\]
+
+\end{document}
