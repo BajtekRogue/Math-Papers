@@ -1,0 +1,127 @@
+\documentclass[a4paper,12pt]{report}
+\errorcontextlines=999
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{fact}{Fact}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Mat}{Mat}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+
+\crefname{fact}{fact}{facts}
+\Crefname{fact}{Fact}{Facts}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+\title{Probability of Real Roots in Random Quadratic Equations}
+\author{Bajtek Rogue}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Problem}
+
+Let $ax^2+bx+c=0$ be a quadratic equation with $a,b,c\in\mathbb{R}$. 
+
+We want to calculate the probability that it has real roots. Recall that a quadratic equation either has all real roots or all complex (non-real) roots, and the roots are real if and only if the discriminant satisfies $b^2-4ac\ge0$.
+
+We will assume that $a,b,c$ are chosen uniformly and independently from a symmetric interval $[-M;M]$, and then take the limit as $M\to\infty$.
+
+\section*{Solution}
+
+Let $M>0$ and let $A,B,C$ be independent random variables with uniform distribution:
+\[
+A,B,C\sim\mathcal{U}([-M;M]).
+\]
+Put $D=B^2-4AC$. We want to calculate
+\[
+\lim_{M\to\infty} \mathbb{P}[D\ge0].
+\]
+The desired probability is
+\[
+\mathbb{P}[D\ge0]=\iiint_{[-M;M]^3}f_A(x)\cdot f_B(y) \cdot f_C(z)\cdot \mathbf{1}_{y^2\ge4xz}\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z,
+\]
+where $f_A$, $f_B$, and $f_C$ are the probability density functions. Recall that the probability density function for $\mathcal{U}([-M;M])$ is given by $f(t)=\frac{1}{2M}$.
+
+\subsection*{Calculating the Integrals}
+
+We split the integration region into two pieces based on the sign of $4xz$:
+\begin{itemize}
+    \item If $4xz<0$, then $y^2\ge 4xz$ for all $y\in[-M;M]$.
+    \item If $4xz\ge 0$, then $y^2\ge 4xz$ if and only if $|y|\ge 2\sqrt{xz}$, so \\ $y\in [-M;-2\sqrt{xz}]\cup[2\sqrt{xz},M]$.
+\end{itemize}
+
+Since $f_A=f_B=f_C=\frac{1}{2M}$, we have $f_A(x)\cdot f_B(y)\cdot f_C(z)=\left(\frac{1}{2M}\right)^3=\frac{1}{8M^3}$.
+
+The desired integral now becomes $\frac{1}{8M^3}\cdot(I+J)$, where
+\[
+I=\iint_{\substack{xz < 0 \\ x,z\in[-M;M]}}\int_{-M}^{M} 1\,\mathrm{d}y\,\mathrm{d}x\,\mathrm{d}z
+\]
+and
+\[
+J=\iint_{\substack{xz \ge 0 \\ x,z\in[-M;M]}}\int_{[-M;-2\sqrt{xz}]\cup[2\sqrt{xz};M]} 1\,\mathrm{d}y\,\mathrm{d}x\,\mathrm{d}z.
+\]
+
+\medskip
+\noindent\textbf{Computing $I$:}
+
+The innermost integral evaluates to $2M$. Then
+\begin{align*}
+I&=\iint_{\substack{xz < 0 \\ x,z\in[-M;M]}}2M\,\mathrm{d}x\,\mathrm{d}z\\
+&=\int_{0}^M\int_{-M}^0 2M \,\mathrm{d}x\,\mathrm{d}z+ \int_{-M}^0\int_{0}^M 2M\,\mathrm{d}x\,\mathrm{d}z.
+\end{align*}
+Both of these are integrals of a constant function over a region of area $M^2$, so each evaluates to $2M^3$. Hence $I=4M^3$.
+
+\medskip
+\noindent\textbf{Computing $J$:}
+
+The innermost integral is the length of the union $[-M;-2\sqrt{xz}]\cup[2\sqrt{xz};M]$, which is $2M-4\sqrt{xz}$. Thus
+\begin{align*}
+J&=\iint_{\substack{xz \ge 0 \\ x,z\in[-M;M]}}(2M-4\sqrt{xz})\,\mathrm{d}x\,\mathrm{d}z\\
+&=\int_{0}^M\int_{0}^M (2M-4\sqrt{xz}) \,\mathrm{d}x\,\mathrm{d}z+ \int_{-M}^0\int_{-M}^0 (2M-4\sqrt{xz})\,\mathrm{d}x\,\mathrm{d}z.
+\end{align*}
+Note that both integrals have the same value by the substitution $x\mapsto -x$, $z\mapsto -z$. 
+We get
+\begin{align*}
+J&=2\int_{0}^M\int_{0}^M (2M-4\sqrt{xz}) \,\mathrm{d}x\,\mathrm{d}z =2\left(M \cdot M\cdot 2M - 4\int_{0}^M\int_{0}^M\sqrt{xz}\,\mathrm{d}x\,\mathrm{d}z\right)\\
+&=4M^3-8\left(\int_{0}^M\sqrt{t}\,\mathrm{d}t\right)^2 =4M^3-8\left( \frac{2}{3} t^{3/2} \bigg|_0^M \right)^2=4M^3-8\left(\frac{2}{3}M^{3/2}\right)^2\\
+&=4M^3-8\cdot\frac{4}{9}M^3=4M^3-\frac{32}{9}M^3=\frac{4}{9}M^3.
+\end{align*}
+
+\subsection*{Final Answer}
+
+Finally, we obtain
+\[
+\mathbb{P}[D\ge0]=\frac{1}{8M^3}\cdot(I+J)=\frac{1}{8M^3}\cdot\left(4M^3+\frac{4}{9}M^3\right)=\frac{1}{8M^3}\cdot\frac{40}{9}M^3=\frac{5}{9}.
+\]
+Since this probability does not depend on $M$, we have
+\[
+\lim_{M\to\infty} \mathbb{P}[D\ge0]=\boxed{\frac{5}{9}}.
+\]
+
+\end{document}
