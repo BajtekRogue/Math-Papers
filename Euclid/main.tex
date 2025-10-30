@@ -1,0 +1,336 @@
+\documentclass[a4paper,12pt]{report}
+\errorcontextlines=999
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{fact}{Fact}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+
+\crefname{fact}{fact}{facts}
+\Crefname{fact}{Fact}{Facts}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+
+
+% \newcommand{\graphfamily}[1]{%
+%   \vspace{0.8em}
+%   \noindent\textbf{#1}\\[0.3em]
+% }
+
+% \newcommand{\distribution}[1]{%
+%   \vspace{0.8em}
+%   \noindent\textbf{#1}\\[0.3em]
+% }
+% \renewcommand{\thefigure}{\arabic{figure}} 
+% \makeatletter
+% \@addtoreset{figure}{chapter} 
+% \makeatother
+
+\title{War Crimes Against Euclid.}
+\author{Bajtek Rogue}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\chapter{Introduction}
+
+
+\chapter{Set Theory and Analysis Basics}
+
+\section{Real Numbers}
+
+Let $\mathbb{R}$ be a set equipped with operations $+,\cdot:\mathbb{R}\times\mathbb{R}\to\mathbb{R}$ called addition and multiplication satisfying the following axioms:
+\begin{enumerate}
+  \item $\forall a,b,c \in \mathbb{R} \quad a+(b+c)=(a+b)+c$
+  \item $\exists 0\in\mathbb{R} \; \forall a\in\mathbb{R} \quad a+0=a$
+  \item $\forall a\in\mathbb{R} \; \exists b\in\mathbb{R} \quad a+b=0$
+  \item $\forall a,b\in\mathbb{R} \quad a+b=b+a$
+  \item $\forall a,b,c \in \mathbb{R} \quad a\cdot(b\cdot c)=(a\cdot b)\cdot c$
+  \item $\exists 1\in\mathbb{R} \; \forall a\in\mathbb{R} \quad a\cdot1=a$
+  \item $\forall a\in\mathbb{R} \; \exists b\in\mathbb{R} \quad a\cdot b=1$
+  \item $\forall a,b\in\mathbb{R} \quad a\cdot b=b\cdot a$
+  \item $\forall a,b,c\in\mathbb{R} \quad a\cdot(b+c)=a\cdot b + a \cdot c$
+\end{enumerate}
+Moreover $\mathbb{R}$ needs to satisfy the \textbf{least upper bound property}:
+\[
+  \forall S \subseteq\mathbb{R} \; \exists m \in\mathbb{R} \; \forall x \in S \quad x \le m \implies (\exists u\in\mathbb{R} \; \forall v \in \mathbb{R} \; \forall x\in S \quad x \le v \implies u \le v) ~.
+\]
+In words it simply means that every bounded set has a least upper bound. We can easily see that it has to be unique. We denoted it as $\sup(S)$. Similarly we denote the least lower bound of a set $\inf(S)$.
+
+\chapter{Lines}
+
+\begin{definition}
+  \textbf{Plane} is the set $\mathbb{R}^2=\{(x,y):x,y\in\mathbb{R}\}$.
+\end{definition}
+
+\begin{definition}
+  \textbf{Point} is any element of the plane.
+\end{definition}
+
+\begin{definition}
+  \textbf{Origin} is the point $(0,0)$. We denote it as $\mathcal{O}$.
+\end{definition}
+
+\begin{definition}
+  Let $P,Q\in\mathbb{R}^2$ be points with $P=(x_1,y_1),\; Q=(x_2,y_2)$. \textbf{Vector} from $P$ to $Q$ is $\vec{PQ}=[x_2-x_1,y_2-y_1]$. Without loss of generality me might take $P=\mathcal{O}$ and put vector to be $\mathbf{v}=[v_1,v_2]$ for $v_1,v_2\in\mathbb{R}$.
+\end{definition}
+
+\begin{definition}
+  Vector $[0,0]$ is called the \textbf{zero vector}. We denote it as $\mathbf{0}$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathbf{v}\in\mathbb{R}^2$ be a vector with $\mathbf{v}=[v_1,v_2]$ and $\lambda \in\mathbb{R}$ be a number. We define \textbf{scalar multiplication} as $\lambda\cdot\mathbf{v}=[\lambda\cdot v_1,\lambda\cdot v_2]$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathbf{u},\mathbf{v}\in\mathbb{R}^2$ be vectors with $\mathbf{u}=[u_1,u_2],\;\mathbf{v}=[v_1,v_2]$. We define \textbf{vector addition} as $\mathbf{u}+\mathbf{v}=[u_1+v_1,u_2+v_2]$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathbf{v}\in\mathbb{R}^2$ be a vector with $\mathbf{v}=[v_1,v_2]$ and $P\in\mathbb{R}^2$ be a point with $P=(x,y)$. We define \textbf{point translation} as $P+\mathbf{v}=(x+v_1,y+v_2)$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathbf{v}\in\mathbb{R}^2$ be a vector with $\mathbf{v}=[v_1,v_2]$. We define it's  \textbf{length} as $\|\mathbf{v}\|=\sqrt{v_1^2+v_2^2}$.
+\end{definition}
+
+\begin{definition}
+  Vector $\mathbf{v}=[v_1,v_2]$ is called a \textbf{unit vector} if $\|\mathbf{v}\|=1$.
+\end{definition}
+
+\begin{definition}
+  Let $P,Q\in\mathbb{R}^2$ be points. \textbf{Line segment} between $P$ and $Q$ is the set $PQ=\{(1-t)\cdot P+t\cdot Q:t\in[0;1]\}$.
+\end{definition}
+
+\begin{definition}
+  Let $P,Q\in\mathbb{R}^2$ be points with $P=(x_1,y_1),\; Q=(x_2,y_2)$. \textbf{Distance} between $P$ and $Q$ is $|PQ|=\sqrt{{(x_1-x_2)}^2+{(y_1-y_2)}^2}$.
+\end{definition}
+
+\begin{fact}\label{Distance Addition}
+  Let $P,Q,R\in\mathbb{R}^2$ be points. If $R\in PQ$ then $|PQ|=|PR|+|RQ|$.
+\begin{proof}
+  Let $P=(x_1,y_1),\; Q=(x_2,y_2),\; R=(x_3,y_3)$. Since $R\in PQ$ we have $R=(1-t)\cdot P+t\cdot Q$ for some $t\in[0;1]$ and so 
+  \[
+    x_3=(1-t)\cdot x_1+tx_2, \quad y_3=(1-t)\cdot y_1+ty_2 ~.
+  \]
+  Plugging in we get
+  \[
+    |PR|=\sqrt{(x_3-x_1)^2+(y_3-y_1)^2}=\sqrt{t^2\cdot ({(x_2-x_1)}^2+{(y_2-y_1)}^2)}=t\cdot |PQ| ~.
+  \]
+  \[
+    |RQ|=\sqrt{(x_3-x_2)^2+(y_3-y_2)^2}=\sqrt{{(1-t)}^2\cdot ({(x_2-x_1)}^2+{(y_2-y_1)}^2)} \\
+    =(1-t)\cdot |PQ| ~.
+  \]
+  Hence $|PR|+|RQ|=|PQ|$.
+\end{proof}
+\end{fact}
+
+\begin{definition}
+  Let $P\in\mathbb{R}^2$ be a point and $\mathbf{v}\in\mathbb{R}^2$ be a nonzero vector. \textbf{Ray} starting at $P$ and with direction $\mathbf{v}$ is $\{P+t\cdot\mathbf{v}:t\in[0;+\infty)\}$.
+\end{definition}
+
+\begin{definition}
+  Let $P\in\mathbb{R}^2$ be a point and $\mathbf{v}\in\mathbb{R}^2$ be a nonzero vector. \textbf{Line} passing through $P$ and with direction $\mathbf{v}$ is $\{P+t\cdot\mathbf{v}:t\in \mathbb{R}\}$.
+\end{definition}
+
+\begin{theorem}\label{Linear Equation Defines a Line}
+  Set $\ell\subseteq\mathbb{R}^2$ is a line if and only if there are $A,B,C\in\mathbb{R}$ with $A\ne 0$ or $B\ne 0$ so that 
+  \[
+    \ell=\{(x,y)\in\mathbb{R}^2:Ax+By+C=0\} ~.
+  \]
+  We write this as $\ell:Ax+By+C=0$.
+\end{theorem}
+\begin{proof}
+
+  $\implies$. \\
+  Let $\ell\subseteq\mathbb{R}^2$ be a line passing through point $P=(x_0,y_0)$ and with direction vector $\mathbf{v}=[v_1,v_2]$. Take $(x,y)\in\ell$. We have $(x,y)=(x_0,y_0)+t\cdot [v_1,v_2]$ for some $t\in\mathbb{R}$. Hence $x=x_0+tv_1, \; y=y_0+tv_2$. Also $v_2x-v_1y+v_2x_0-v_1y_0=v_2\cdot (x_0+tv_1)-v_1\cdot (y_0+tv_2)+v_2x_0-v_1y_0=0$. Thus all points on $\ell$ satisfy the equation $Ax+By+C=0$ with 
+  \[
+    A=v_2, \; B=-v_1, \; C=v_2x_0-v_1y_0 ~.
+  \]
+  Moreover since $\mathbf{v}\ne\mathbf{0}$ we know that $A\ne 0$ or $B\ne 0$.
+  \\ $\impliedby$.
+  Let $\ell:Ax+By+C=0$ be a set with $A\ne 0$ or $B\ne 0$. Without loss of generality assume $A\ne 0$. Now $(-\frac{C}{A},0)\in\ell$ so $\ell\ne\varnothing$ and thus we can fix $(x_0,y_0)\in\ell$. Now take $(x,y)\in\ell$. We have $Ax+By+C=0$ and so $x=-\frac{By+C}{A}$. Take $t\in\mathbb{R}$ such that $y=y_0-tA$, preciously $t=-\frac{y-y_0}{A}$. Then we have 
+  \[
+    x=-\frac{B\cdot(y_0-tA)+C}{A}=-\frac{By_0+C}{A}+tB=x_0+tB
+  \]
+  where $x_0=-\frac{By_0+C}{A}$ because $(x_0,y_0)\in\ell$. Hence we have $x=x_0+tB, \; y=y_0-tA$ and so $\ell=\{(x_0,y_0)+t\cdot [B,-A]:t\in\mathbb{R}\}$. Thus $\ell$ is a line.
+
+\end{proof}
+
+\begin{theorem}\label{Equality of Lines}
+  Let $\ell:Ax+By+C=0$ and $k:Dx+Ey+F=0$ be lines. The following are equivalent:
+  \begin{enumerate}
+    \item $\ell=k$
+    \item $AE=BD$  and $AF=CD$
+    \item $\exists\lambda\in\mathbb{R}\setminus\{0\}\quad D=\lambda A,\; E=\lambda B,\; F=\lambda C$
+  \end{enumerate}
+\begin{proof}
+  $1\implies 2$. Suppose $\ell=k$ and without loss of generality assume $A,D\ne 0$. If $(x,y)\in \ell$ then $x=-\frac{By+C}{A}$ and if $(x,y)\in k$ then $x=-\frac{Ey+F}{D}$. Since $\ell=k$ we get $\frac{By+C}{A}=\frac{Ey+F}{D}$. This equality holds for any $y\in\mathbb{R}$ so we must have $\frac{B}{A}=\frac{E}{D}, \; \frac{C}{A}=\frac{F}{D}$ which implies that $AE=BD$ and $AF=CD$.\\
+  $2\implies 3$. Suppose that $AE=BD$ and $AF=CD$ and without loss of generality assume $A,D\ne 0$. We can write
+  \[
+    D=\frac{D}{A}\cdot A, \; E=\frac{D}{A}\cdot B, \; F=\frac{D}{A}\cdot C ~.
+  \]
+  Since $D\ne 0$ it means that $\frac{D}{A}\ne 0$. \\
+  $3\implies 1$. Suppose $D=\lambda A,\; E=\lambda B,\; F=\lambda C$ for some $\lambda\in\mathbb{R}$ with $\lambda\ne 0$. Take $(x,y)\in \ell$. Then $Ax+By+C=0$ but also $\lambda\cdot (Ax+By+C)=0$ and so $Dx+Ey+F=0$. Hence $(x,y)\in k$ and $\ell\subseteq k$. Take $(x,y)\in k$. Then $Dx+Ey+F=0$ but that means $\lambda\cdot (Ax+By+C)=0$. Since $\lambda\ne 0$ we have $Ax+By+C=0$. Hence $(x,y)\in \ell$ and $k\subseteq \ell$. All in all we get $\ell=k$.
+\end{proof}
+\end{theorem}
+
+\begin{theorem}\label{Intersection of Lines}
+  Let $\ell:Ax+By+C=0$ and $k:Dx+Ey+F=0$ be lines. Then $|\ell\cap k|\in\{0,1,\infty\}$ and the value of $|\ell\cap k|$ can be determined as follows: Put 
+  \[
+    \Delta=AE-BD, \; \Delta_x=CE-BF, \; \Delta_y=AF-CD ~.
+  \]
+  Now
+  \begin{enumerate}
+    \item $|\ell \cap k|=1$ if and only if $\Delta\ne 0$
+    \item $|\ell\cap k|=0$ if and only if $\Delta=0$ and $\Delta_x\ne 0$ or $\Delta_y\ne 0$
+    \item $|\ell\cap k|=\infty$ if and only if $\Delta=0$ and $\Delta_x=0$ and $\Delta_y=0$
+  \end{enumerate}
+  Moreover if $|\ell \cap k|=1$ then the solution is given by
+  \[
+    x=-\frac{\Delta_x}{\Delta}, \; y=-\frac{\Delta_y}{\Delta} ~.
+  \]
+\begin{proof}
+Point $(x,y)\in \ell \cap k$ solves the following system of equations:
+\[
+  \begin{cases}Ax + By + C = 0 \\Dx + Ey + F = 0\end{cases}
+\]
+Without loss of generality assume $A\ne 0$. Then $x=-\frac{By+C}{A}$. Substituting it into the second equation we get $-D\cdot \frac{By+C}{A}+Ey+F=0$ which simplifies to $\frac{AE-BD}{A}y+\frac{AF-CD}{A}=0$ and further to $\Delta\cdot y+\Delta_y=0$. If $\Delta\ne 0$ we have $y=-\frac{\Delta_y}{\Delta}$. Plugging back we get $x=-\frac{B\cdot \frac{CD-AF}{AE-BD}+C}{A}=-\frac{\Delta_x}{\Delta}$. However if $\Delta=0$ we need to consider two cases:
+
+\textbf{Case 1:}
+
+Suppose $\Delta_y\ne 0$. Then the second equation is equivalent to $\Delta_y=0$ which has no solutions.
+
+\textbf{Case 2:}
+
+Suppose $\Delta_y=0$. By \Cref{Equality of Lines} we get $\ell=k$ and so $|\ell\cap k|=\infty$. All of the steps are reversible, and hence these conditions are necessary and sufficient.  
+\end{proof}
+\end{theorem}
+
+\begin{fact}\label{Two points, one line}
+  Let $P,Q\in\mathbb{R}^2$ be points with $P\ne Q$. There is a unique line $\ell\subseteq\mathbb{R}^2$ such that $P,Q\in\ell$.
+\begin{proof}
+  Let $P=(x_1,y_1),\;Q=(x_2,y_2)$. Put $\ell=\{P+t\cdot \vec{PQ}:t\in \mathbb{R}\}$. We have $P\in\ell$ for $t=0$ and $Q\in\ell$ for $t=1$. Moreover suppose there is another line $k$ such that $P,Q\in k$. But then $|\ell\cap k|\ge 2$ and by \Cref{Intersection of Lines} $|\ell \cap k|=\infty$ and so $\ell=k$.
+\end{proof}
+\end{fact}
+
+\begin{definition}
+  Lines $\ell,k\subseteq\mathbb{R}^2$ are said to be \textbf{parallel}, written $\ell\parallel k$, if $\ell =k$ or $\ell\cap k=\varnothing$.
+\end{definition}
+
+\begin{fact}\label{Condition for Parallelity}
+Let $\ell:Ax+By+C=0$ and $k:Dx+Ey+F=0$ be lines. We have $\ell\parallel k$ if and only if $AE-BD=0$.
+\begin{proof}
+  By \Cref{Intersection of Lines} if $\ell\parallel k$ then $|\ell\cap k|\in\{0,\infty\}$ and so $AE-BD=0$.
+\end{proof}
+\end{fact}
+
+\begin{definition}
+  Points $P,Q,R\in\mathbb{R}^2$ are said to be \textbf{colinear} if there is a line $\ell\subseteq\mathbb{R}^2$ such that $P,Q,R\in\ell$.
+\end{definition}
+
+\begin{theorem}\label{Condition for Colinearity}
+  Let $P,Q,R\in\mathbb{R}^2$ be points with $P=(x_1,y_1),\; Q=(x_2,y_2),\; R=(x_3,y_3)$. Then $P,Q,R$ are colinear if and only if 
+  \[
+    \text{det}\begin{bmatrix}
+    1 & x_1  & y_1 \\
+    1 & x_2  & y_3
+    \\
+    1 & x_3 & y_3
+    \end{bmatrix}=0
+  \]
+\begin{proof}
+  $\implies$. Suppose $\ell:Ax+By+C=0$ is a line with $P,Q,R\in\ell$. There are $s,t\in\mathbb{R}$ so that $Q=P+t\cdot [B,-A]$ and $R=P+t\cdot[B,-A]$. Thus we get 
+  \[
+      x_2=x_1+tB, \; y_2=y_1-tA, \; x_3=x_1+sB, \; y_3=y_1-sA ~.
+  \]
+  Also note that 
+  \[
+    \text{det}\begin{bmatrix}
+    1 & x_1  & y_1 \\
+    1 & x_2  & y_3
+    \\
+    1 & x_3 & y_3
+    \end{bmatrix}=x_2y_3-x_3y_2-x_1y_3+x_3y_1+x_1y_2-x_2y_1 ~.
+  \]
+  Plugging in we get
+  \begin{align*}
+    (x_1+tB)\cdot(y_1-sA)-(x_1+sB)\cdot (y_1-tA)-x_1\cdot(y_1-sA) \\
+    +(x_1+sB)\cdot y_1+x_1\cdot (y_1-tA)-(x_1+tB)\cdot y_1=0 ~.
+  \end{align*}
+  \\
+  $\impliedby$. Let $\ell:Ax+By+C=0$ and $k:Dx+Ey+F=0$ be lines with $P,Q\in\ell$ and $P,R\in k$. They are unique by **Fact 2**. Also we have $Q=P+t\cdot [B,-A]$ and $R=P+s\cdot [E,-D]$ for some $s,t\in\mathbb{R}$. Thus we get
+  \[
+    x_2=x_1+tB, \; y_2=y_1-tA, \; x_3=x_1+sE, \; y_3=y_1-sD ~.
+  \]
+  Plugging in we get
+  \begin{align*}
+    (x_1+tB)\cdot(y_1-sD)-(x_1+sE)\cdot (y_1-tA)-x_1\cdot(y_1-sD) \\
+    +(x_1+sE)\cdot y_1+x_1\cdot (y_1-tA)-(x_1+tB)\cdot y_1=st\cdot (AE-BD) ~.
+  \end{align*}
+  By assumption this expression is zero. Since $P\ne Q$ and $P\ne R$ we know that $s,t\ne 0$. Hence we get that $AE-BD$. By \Cref{Condition for Parallelity} we know that $\ell\parallel k$. However since $P\in \ell \cap k$ by \cref{Intersection of Lines} we get that $\ell=k$ and so $P,Q,R$ are colinear.
+\end{proof}
+\end{theorem}
+
+\chapter{Circles}
+
+\begin{definition}
+  Let $r>0$ and $(p,q)\in\mathbb{R}^2$. Then \textbf{Circle} of center $(p,q)$ and radius $r$ is $\{(x,y)\in\mathbb{R}^2:{(x-p)}^2+{(y-q)}^2=r^2\}$. We write this as $\mathcal{C}:(x-p)^2+(y-q)^2=r^2$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathcal{C}:(x-p)^2+(y-q)^2=r^2$ be a circle. \textbf{Diameter} of $\mathcal{C}$ is any line segment $AB$ such that $A,B\in \mathcal{C}$ and $(p,q)\in AB$.
+\end{definition}
+
+\begin{fact}\label{Diameter VS Radius}
+  Let $\mathcal{C}:{(x-p)}^2+{(y-q)}^2=r^2$ be a circle and $AB$ be it’s diameter. Then $|AB|=2r$.
+\begin{proof}
+  Since $(p,q)\in AB$ by \Cref{Distance Addition} we have $|AB|=|A(p,q)|+|(p,q)B|=r+r=2r$.
+\end{proof}
+\end{fact}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
