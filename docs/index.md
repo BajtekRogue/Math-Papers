@@ -11,3 +11,8 @@ A short paper proving that \( \mathbb{Z}[\frac{1+\sqrt{-19}}{2}] \) is a PID but
 A short problem on the number of equivalent matrices under row permutations.
 
 👉 [Read the paper (PDF)](EquivalentMatricies.pdf)
+
+## Probability of quadratic equation having real roots
+A short problem on calculating the probability that real quadratic equation has real roots.
+
+👉 [Read the paper (PDF)](PositiveDiscriminantProbability.pdf)
